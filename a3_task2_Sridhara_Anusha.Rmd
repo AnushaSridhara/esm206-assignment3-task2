@@ -58,8 +58,12 @@ Make sure to `View()` the resulting data frame (remember: run `View()` in the Co
 
 ```{r}
 # Your code here: 
-
-
+sw_split_name <- starwars %>% 
+  separate(col = name,
+           into = c("name_1", "name_2"),
+           sep = "-"
+)
+## for Row 49, the last name has been dropped. R has considered only the first dash
 ```
 
 #### 1B. Follow me
