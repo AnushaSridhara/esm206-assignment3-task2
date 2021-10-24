@@ -245,9 +245,15 @@ Starting from the `lakers` dataset, create a new dataset called `gasol_hookshots
 - Find the *number* of Gasol's hook shots recorded (not necessarily scored) by **month** (hint: `count(month)`) for the 2008 - 2009 season
 
 ```{r}
-# Your code here: 
+# Your code here:
+gasol_hookshots <- lakers %>% 
+  filter(player=="Pau Gasol", type=="hook") %>% 
+  mutate(Date = ymd(date)) %>% 
+  mutate(Month = month(Date))
 
-
+hookshots_by_month <- gasol_hookshots %>%
+  count(Month)
+hookshots_by_month
 ```
 
 ### 4. `dplyr::case_when()`
@@ -296,8 +302,12 @@ Note: If you add another condition within `case_when()` that is `TRUE ~ "some th
 
 ```{r}
 # Your code here: 
-
-
+storms_danger <- storms %>% 
+  mutate(danger = case_when(
+  status %in% c("hurricane") ~ "high",
+  TRUE ~ "moderate"
+  ))
+storms_danger
 ```
 
 ## 5. Practice version control w/git
